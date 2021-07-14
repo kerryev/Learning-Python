@@ -1,0 +1,86 @@
+# Lists
+mylist = ['banana', 'apple']
+print(mylist)
+for i in mylist:
+    print(i)  # Prints each value in a list
+
+# Check to see if a string is found in the list
+if 'banana' in mylist:
+    print('Yes')
+else:
+    print('No')
+
+# Find the length of the list
+print(len(mylist))
+
+# Append
+mylist.append('lemon')
+print(mylist)
+
+# Adding a value to a specific place in the list
+mylist.insert(1, 'blueberry')
+print(mylist)
+
+
+# Tuples
+# - Similar to a list, cannot be changed after it's creation.
+
+mytuple = (['evan', 18, True])
+print(mytuple)
+print(mytuple[2])
+
+for i in mytuple:
+    print(i)
+
+if 'evan' in mytuple:
+    print('Yes')
+else:
+    print('No')
+
+# Dictionaries, key value pairs, mutable
+
+mydictionary = {"name": "Evan", "age": 18}
+print(mydictionary)
+
+dictionary2 = dict(name="Max", age=16)
+# Accessing values in a dictionary
+value = dictionary2['age']
+print(value)
+
+# deleting a value in a dictionary
+del dictionary2['name']
+print(dictionary2)  # should only print the age
+
+# Printing values in a dictionary
+try:
+    print(mydictionary['name'])
+except:
+    print("Error")
+
+for key in mydictionary:  # Prints all the keys in the dictionary in the for loop
+    print(key)
+
+for key, value in mydictionary.items():
+    print(key, value)
+
+
+# Sets: Unordered, mutable, no duplicates
+
+myset = {1, 2, 3, 4, 5, 6, 1, 2}  # Does not print repeated words
+print(myset)
+
+myset.add(10)  # Adds values to the set
+myset.add(11)
+myset.discard(2)  # Deletes/discards values from a set
+
+print(myset)
+
+# Printing sets in a foor loop
+for x in myset:
+    print(x)
+
+# Checking to see if a value is in the set
+if 1 in myset:
+    print('True')
+else:
+    print('False')
