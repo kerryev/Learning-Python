@@ -1,0 +1,95 @@
+import random
+
+
+def instructions():
+    print('THE VALUE GUESSING GAME')
+    print('')
+    print('You begin with 5 points.')
+    print('You must guess a value that you input into the game')
+    print('Easy ------------ +1 Point for correct guess, -5 for incorrect guess.')
+    print('Medium ------------ +2 Point for correct guess, -4 for incorrect guess.')
+    print('Hard ------------ +3 Point for correct guess, -3 for incorrect guess.')
+    print('If you go bellow 0 points, you loose. Likewise, if you get past 10 points, you win.')
+    print('Make sure to input different values while entering numbers/words.')
+    print('Good luck!')
+    print('')
+
+
+def ingame():
+    points = 5
+    points = int(points)
+    game1 = True
+    while game1 == True:
+        words = []
+        # Difficulty selection
+        print('DIFFICULTY CHOICES')
+        print('easy, medium, hard')
+        difficulty = input('Choose difficulty: ')
+        difficulty = str(difficulty)
+        if difficulty == 'easy':
+            for i in range(3):
+                value = input('Value: ')
+                words.append(value)
+        elif difficulty == 'medium':
+            for i in range(5):
+                value = input('Value: ')
+                words.append(value)
+        elif difficulty == 'hard':
+            for i in range(10):
+                value = input('Value: ')
+                words.append(value)
+        else:
+            print('Invalid input. Please try again.')
+        blankline()
+        print('These are your words, choose carefully.')
+        print(words)
+        blankline()
+        val1 = random.choice(words)
+        guess1 = input('Guess Value 1: ')
+        guess2 = input('Guess Value 2: ')
+        # Checks if you inputted the right or wrong words, gives points accordingly
+        if guess1 == val1 or guess2 == val1:
+            print('')
+            print('You have selected correctly.')
+            if difficulty == 'easy':
+                points += 1
+            elif difficulty == 'medium':
+                points += 2
+            elif difficulty == 'hard':
+                points += 3
+            else:
+                print(
+                    'Earlier, you had an invalid input. You wont loose or gain any points from this round.')
+        else:
+            print('You have selected incorrectly')
+            if difficulty == 'easy':
+                points -= 5
+            elif difficulty == 'medium':
+                points -= 4
+            elif difficulty == 'hard':
+                points -= 3
+            else:
+                print('Please select a proper mode next round.')
+        # Game over?
+        if points <= 0:
+            print('GAME OVER. You have 0 or less points')
+            blankline()
+            game1 = False
+        else:
+            blankline()
+        print('Current points: ' + str(points))
+        blankline()
+        # You win
+        if points >= 10:
+            print('You win. Well done.')
+            blankline()
+            game1 = False
+
+
+def blankline():
+    print('')
+
+
+instructions()
+ingame()
+print('Thanks for playing!')
