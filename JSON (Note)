@@ -1,0 +1,9 @@
+import json
+
+person = {"name": "Evan", "age": 30}
+personJSON = json.dumps(person, indent=4, sort_keys=True)
+print(personJSON)
+
+with open('person.json', 'w') as file:
+    json.dump(person, file)
+
