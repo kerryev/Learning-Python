@@ -1,0 +1,53 @@
+# Lambda arguments - expression
+# assigns fuction to a variable, function is on one line
+# - similar to a arrow function in javascript
+
+from functools import reduce  # Not at the top
+def add10(x): return x + 10
+
+
+def mult(x, y): return x*y
+
+
+def divider(x, y): return x/y
+
+
+print(add10(5))
+print(mult(5, 10))
+print(divider(10, 2))
+
+# Using the lambda function to identify 2D points based on y-pairs
+
+points2D = [(1, 2), (15, 1), (5, -1), (10, 4)]
+
+# List is sorted according to y-index
+points2D_sortedbyy = sorted(points2D, key=lambda x: x[1])
+# List is sorted according to sum of indicies
+points2D_sortedbysum = sorted(points2D, key=lambda x: x[0] + x[1])
+
+
+print(points2D)
+print(points2D_sortedbyy)
+print(points2D_sortedbysum)
+
+#Map(func, seq)
+
+a = [1, 2, 3, 4, 5]
+b = map(lambda x: x*2, a)  # Every value in the list is multiplied by 2
+
+print(list(b))
+
+#Filter(Func, seq)
+
+a1 = [1, 2, 3, 4, 5]
+b1 = filter(lambda x: x % 2 == 0, a)  # Filters only even numbers
+
+print(list(b1))
+
+# Reduce (Func seq)
+
+
+a2 = [1, 2, 3, 4, 5]
+# Returns the product of all numbers in the list
+product_a = reduce(lambda x, y: x*y, a)
+print(product_a)
