@@ -1,0 +1,19 @@
+import random
+
+def blankspace():
+    print('')
+
+
+print('WELCOME TO THE GAME: MAD LIBS!')
+blankspace()
+name = input('Name: ')
+adj1 = input('Adjective: ')
+adj2 = input('Adjective: ')
+verb = input('Verb: ')
+blankspace()
+randnum = int(random.randint(0, 1))
+if randnum == 0:
+    madlib = f"{name} went to the supermarket. When {name} reached the store, he saw a {adj1} and {adj2} man about to {verb} in front of his wife./"
+else:
+    madlib = f"{name} is in a {adj1} battle with a {adj2} warrior. {name} could {verb} in fear from the intimidation the warrior produces."
+print(madlib)
