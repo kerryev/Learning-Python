@@ -1,0 +1,25 @@
+# PYTHON DATE TIME MODULE
+
+import datetime
+
+# Prints date and time in 24h format (yyyy/mm/dd hh:mm:ss.msssss)
+print(datetime.datetime.now())
+
+# Accessing Different times in the year
+x = (datetime.datetime.now())
+
+# Year
+year = x.year
+print(year)
+
+# Weekday
+weekday = x.strftime("%A")
+print(weekday)
+
+# Strftime format code - formats date objects into readable strings
+# Example (https://www.w3schools.com/python/python_datetime.asp):
+y = (datetime.datetime.now())
+
+# Day of year
+dayyear = y.strftime("%j")
+print(dayyear)
