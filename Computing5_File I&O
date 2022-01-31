@@ -1,0 +1,109 @@
+# ********************************************
+# Write your get_user_data function below: (2.5 marks)
+# ********************************************
+
+def get_user_data(filename):
+    # textfile (database.txt) is opened, read only, stored in data_base variable
+    data_base = open(filename, 'r')
+    # List containing usernames and passwords are initialized
+    usernames = []
+    passwords = []
+    # For loop adds appends words (both the usernames and passwords) into the usernames and passwords lists
+    for i in data_base:
+        i = i.strip('\n')
+        i = i.split('\t')
+        usernames.append(i[0])
+        passwords.append(i[1])
+    data_base.close()
+    # Function returns the list generated containing usernames and passwords
+    return [usernames, passwords]
+
+# ********************************************
+# Write your exists function below: (2.5 marks)
+# ********************************************
+
+
+def exists(username, usernames):
+    # If the username inputted by the user matches a username found in the usernames list, the function returns true
+    # if it doesnt match, the function returns false
+    if username in usernames:
+        return True
+    else:
+        return False
+
+# ********************************************
+# Write your create_user function below: (2.5 marks)
+# ********************************************
+
+
+def create_user(username, password, usernames, filename):
+    # If the username exists, the program will not allow a new user to be created
+    # We want every username to be different, so returning false will notify the user that the username is taken
+    if exists(username, usernames):
+        return False
+    # if the username does not exist, we can append the database text in order to add a new username and password to the text file
+    else:
+        # textfile 'database.txt' is opened
+        data_base = open(filename, 'a')
+        data_base.write(username + '\t')
+        data_base.write(password + '\n')
+        data_base.close()
+        return True
+
+# ********************************************
+# Write your login function below: (4.5 marks)
+# ********************************************
+
+
+def login(username, password, filename):
+    # the lists containing usernames and passwords are redefined by calling the get_user_data function in order to be used inside the login function
+    x = get_user_data(filename)
+    # if the username exists, and since the username and password are located in the same index (but differtent lists), you can compare the values of the
+    # lists at the same index to see wheither the expected password matches the user's password input
+    if exists(username, x[0]):
+        index = x[0].index(username)
+        # .index is used to find the index location of the username the user inputs
+        # if the password with the matching index is the same as the password inputted by the user, the program returns true and notifies the user that login was succesful
+        if x[1][index] == password:
+            return True
+        # if the password was not the same, the program returns false and notifies the user that the login failed
+        else:
+            return False
+    else:
+        return False
+
+# TESTING
+
+
+def main():
+
+    database = "database.txt"
+    while True:
+        ans = input(
+            "Press [q] to quit, [l] to login, [c] to create an account: ")
+        if ans == "q":
+            # Break if the user quits
+            break
+        elif ans == "l":
+            # Login if the user types in "l"
+            uname = input("Please enter your username: ")
+            password = input("Please enter your password: ")
+            if login(uname, password, database):
+                print("Login successful!\n")
+            else:
+                print("Sorry, login unsuccessful :(\n")
+        elif ans == "c":
+            # Create an account if the user types in c
+            uname = input("Please create a username: ")
+            password = input("Please create a password: ")
+            # Check if username exists
+            username_list = get_user_data(database)[0]
+            if create_user(uname, password, username_list, database):
+                print("Account creation successful for user,", uname, "\n")
+            else:
+                print("Sorry,", uname, "is already taken!\n")
+        else:
+            print("Please enter a valid character")
+
+
+main()
